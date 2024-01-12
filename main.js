@@ -1,24 +1,17 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+// import "./style.css";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
+import { Niivue } from "@niivue/niivue";
+
+document.querySelector("#app").innerHTML = `
+  <div style="position: absolute; top: 0; left: 0;"> 
+    <canvas id="gl" width="500" height="500"></canvas>
   </div>
-`
+`;
 
-setupCounter(document.querySelector('#counter'))
+// make an array of volumes to load
+let volumeList = [
+  { url: "https://niivue.github.io/niivue-demo-images/mni152.nii.gz" },
+];
+const nv = new Niivue();
+nv.attachTo("gl"); // attach to canvas with id="gl"
+nv.loadVolumes(volumeList);
