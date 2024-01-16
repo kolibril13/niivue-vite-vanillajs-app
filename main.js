@@ -22,8 +22,8 @@ var meshLHLayersList1 = [
     opacity: 0.7,
   },
 ];
-await nv1.loadMeshes([
+nv1.loadMeshes([
   { url: "images/BrainMesh_ICBM152.lh.mz3", layers: meshLHLayersList1 },
 ]);
-nv1.setMeshShader(nv1.meshes[0].id, "Matcap");
+// nv1.setMeshShader(nv1.meshes[0].id, "Matcap");
 nv1.setClipPlane([-0.1, 270, 0]);
