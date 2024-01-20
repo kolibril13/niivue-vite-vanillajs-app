@@ -4,7 +4,6 @@ const canvas = document.createElement("canvas");
 canvas.width = 800;
 canvas.height = 1500;
 
-
 var label = document.createElement("label");
 label.setAttribute("for", "meshSlider");
 label.textContent = "Threshold";
@@ -24,7 +23,6 @@ input.style.width = "400px";
 document.querySelector("#app").appendChild(label);
 document.querySelector("#app").appendChild(input);
 
-
 var slider = document.getElementById("meshSlider");
 slider.oninput = function () {
   nv1.setMeshLayerProperty(nv1.meshes[0].id, 0, "cal_min", this.value * 0.1);
@@ -39,16 +37,18 @@ var nv1 = new Niivue({
 nv1.setSliceType(nv1.sliceTypeRender);
 nv1.attachToCanvas(canvas);
 nv1.opts.isColorbar = true;
-var meshLHLayersList1 = [
-  {
-    url: "images/BrainMesh_ICBM152.lh.motor.mz3",
-    cal_min: 2,
-    cal_max: 5,
-    useNegativeCmap: true,
-    opacity: 0.7,
-  },
-];
+
 nv1.loadMeshes([
-  { url: "images/BrainMesh_ICBM152.lh.mz3", layers: meshLHLayersList1 },
+  {
+    url: "images/Human.colin.Cerebral.R.VERY_INFLATED.71723.surf.gii",
+    rgba255: [255, 255, 255, 255],
+    layers: [
+      {
+        url: "images/Human.colin.R.FUNCTIONAL.71723.func.gii",
+        colormap: "rocket",
+        opacity: 0.7,
+      },
+    ],
+  },
 ]);
 nv1.setClipPlane([-0.1, 270, 0]);
