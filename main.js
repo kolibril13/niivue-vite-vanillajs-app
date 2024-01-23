@@ -24,5 +24,5 @@ var volumeList1 = [
 
 const nv = new Niivue({ isResizeCanvas: false });
 nv.attachTo("gl");
-nv.loadVolumes(volumeList1);
+await nv.loadVolumes(volumeList1);
 nv.setOpacity(1, 0.2)
