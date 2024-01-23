@@ -18,12 +18,11 @@ var volumeList1 = [
     url: "images/hippo.nii.gz",
     colormap: "red",
     visible: true,
-    opacity: 0.8,
+    opacity: 1,
   },
 ];
 
 const nv = new Niivue({ isResizeCanvas: false });
 nv.attachTo("gl");
 nv.loadVolumes(volumeList1);
-// nv. SOME CODE to set the opacity of the hippocampus to 0.2 
-nv.setOpacity(1, 0.1)
+nv.setOpacity(1, 0.2)
