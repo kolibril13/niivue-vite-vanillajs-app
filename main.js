@@ -13,10 +13,6 @@ const codeElement = document.createElement("code");
 codeElement.className = "javascript";
 codeElement.textContent = `import { Niivue } from "@niivue/niivue";
 
-
-
-
-
 var volumeList1 = [
   {
     url: "mni152.nii.gz",
@@ -47,18 +43,18 @@ codeBlock.style.width = "50%";
 codeBlock.style.whiteSpace = "pre-wrap";
 hljs.highlightElement(codeElement);
 
-// Create canvas container
-const canvasContainer = document.createElement("div");
-canvasContainer.style.width = "50%";
+container.appendChild(codeBlock);
 
 // Create and configure canvas
+
+const canvasContainer = document.createElement("div");
+canvasContainer.style.width = "50%";
 const canvas = document.createElement("canvas");
 canvas.id = "gl";
 
 canvasContainer.appendChild(canvas);
 
 // Append the containers to the main container
-container.appendChild(codeBlock);
 container.appendChild(canvasContainer);
 
 // Append the main container to the document
