@@ -8,9 +8,10 @@ const codeBlock = document.createElement("div");
 codeBlock.style.width = "50%";
 codeBlock.textContent = `
 import { Niivue } from "@niivue/niivue";
+
 var volumeList1 = [
   {
-    url: "public/mni152.nii.gz",
+    url: "mni152.nii.gz",
     colormap: "gray",
     visible: true,
     opacity: 1,
@@ -19,10 +20,16 @@ var volumeList1 = [
 
 const nv = new Niivue({ isResizeCanvas: false });
 nv.attachTo("gl");
-await nv.loadVolumes(volumeList1);
-console.log("hi" + nv.colormaps());
-nv.setOpacity(0, 0.5);
-nv.setColorMap(nv.volumes[0].id, "red");
+
+// Use .then() to wait for the volume to load
+nv.loadVolumes(volumeList1).then(() => {
+  console.log("Volume loaded");
+  console.log("hi" + nv.colormaps());
+  nv.setOpacity(0, 0.5);
+  nv.setColorMap(nv.volumes[0].id, "red");
+}).catch((error) => {
+  console.error("Error loading volumes", error);
+});
 `;
 codeBlock.style.whiteSpace = "pre-wrap";
 
@@ -47,6 +54,7 @@ container.appendChild(canvasContainer);
 
 document.querySelector("#app").appendChild(container);
 import { Niivue } from "@niivue/niivue";
+
 var volumeList1 = [
   {
     url: "mni152.nii.gz",
@@ -58,7 +66,13 @@ var volumeList1 = [
 
 const nv = new Niivue({ isResizeCanvas: false });
 nv.attachTo("gl");
-nv.loadVolumes(volumeList1);
-console.log("hi" + nv.colormaps());
-nv.setOpacity(0, 0.5);
-nv.setColorMap(nv.volumes[0].id, "red");
+
+// Use .then() to wait for the volume to load
+nv.loadVolumes(volumeList1).then(() => {
+  console.log("Volume loaded");
+  console.log("hi" + nv.colormaps());
+  nv.setOpacity(0, 0.5);
+  nv.setColorMap(nv.volumes[0].id, "red");
+}).catch((error) => {
+  console.error("Error loading volumes", error);
+});
