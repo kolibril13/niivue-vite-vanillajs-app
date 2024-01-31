@@ -1,5 +1,5 @@
 import hljs from "highlight.js";
-import 'highlight.js/styles/atom-one-dark.css'; 
+import "highlight.js/styles/atom-one-dark.css";
 import { Niivue } from "@niivue/niivue";
 
 // Create main container
@@ -12,6 +12,10 @@ const codeBlock = document.createElement("pre");
 const codeElement = document.createElement("code");
 codeElement.className = "javascript";
 codeElement.textContent = `import { Niivue } from "@niivue/niivue";
+
+
+
+
 
 var volumeList1 = [
   {
@@ -36,6 +40,9 @@ nv.loadVolumes(volumeList1).then(() => {
 });
 `;
 codeBlock.appendChild(codeElement);
+codeBlock.style.display = "flex";
+codeBlock.style.justifyContent = "center";
+
 codeBlock.style.width = "50%";
 codeBlock.style.whiteSpace = "pre-wrap";
 hljs.highlightElement(codeElement);
@@ -47,9 +54,7 @@ canvasContainer.style.width = "50%";
 // Create and configure canvas
 const canvas = document.createElement("canvas");
 canvas.id = "gl";
-canvas.width = 800;
-canvas.height = 800;
-canvas.style.border = "1px solid black";
+
 canvasContainer.appendChild(canvas);
 
 // Append the containers to the main container
@@ -60,7 +65,7 @@ container.appendChild(canvasContainer);
 document.querySelector("#app").appendChild(container);
 
 // Initialize and Execute Niivue
-const nv = new Niivue({ isResizeCanvas: false });
+const nv = new Niivue({ isResizeCanvas: true });
 nv.attachTo("gl");
 
 var volumeList1 = [
@@ -72,11 +77,13 @@ var volumeList1 = [
   },
 ];
 
-nv.loadVolumes(volumeList1).then(() => {
-  console.log("Volume loaded");
-  console.log("hi" + nv.colormaps());
-  nv.setOpacity(0, 0.5);
-  nv.setColorMap(nv.volumes[0].id, "red");
-}).catch((error) => {
-  console.error("Error loading volumes", error);
-});
+nv.loadVolumes(volumeList1)
+  .then(() => {
+    console.log("Volume loaded");
+    console.log("hi" + nv.colormaps());
+    nv.setOpacity(0, 0.5);
+    nv.setColorMap(nv.volumes[0].id, "red");
+  })
+  .catch((error) => {
+    console.error("Error loading volumes", error);
+  });
