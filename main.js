@@ -32,8 +32,7 @@ nv.loadVolumes(volumeList1)
 const createContainer = (width, content) => {
   const container = document.createElement("div");
   container.style.width = width;
-  container.style.display = "flex";
-  container.style.justifyContent = "center";
+  container.style.display = "inline-block";
   container.innerHTML = content;
   return container;
 };
@@ -43,8 +42,12 @@ hljs.highlightElement(codeContainer.querySelector("code"));
 
 const canvasContainer = createContainer("50%", '<canvas id="gl"></canvas>');
 
-document.querySelector("#app").appendChild(codeContainer);
-document.querySelector("#app").appendChild(canvasContainer);
+const mainContainer = document.createElement("div");
+mainContainer.style.display = "flex";
+mainContainer.appendChild(codeContainer);
+mainContainer.appendChild(canvasContainer);
+
+document.querySelector("#app").appendChild(mainContainer);
 
 const nv = new Niivue({ isResizeCanvas: true });
 nv.attachTo("gl");
