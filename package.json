@@ -12,6 +12,7 @@
     "vite": "^5.0.8"
   },
   "dependencies": {
-    "@niivue/niivue": "^0.38.8"
+    "@niivue/niivue": "^0.38.8",
+    "highlight.js": "^11.9.0"
   }
 }
