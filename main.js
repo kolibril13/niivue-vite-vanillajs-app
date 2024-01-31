@@ -10,7 +10,7 @@ codeBlock.textContent = `
 import { Niivue } from "@niivue/niivue";
 var volumeList1 = [
   {
-    url: "images/mni152.nii.gz",
+    url: "public/mni152.nii.gz",
     colormap: "gray",
     visible: true,
     opacity: 1,
@@ -49,7 +49,7 @@ document.querySelector("#app").appendChild(container);
 import { Niivue } from "@niivue/niivue";
 var volumeList1 = [
   {
-    url: "images/mni152.nii.gz",
+    url: "public/mni152.nii.gz",
     colormap: "gray",
     visible: true,
     opacity: 1,
