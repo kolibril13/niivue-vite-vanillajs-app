@@ -58,7 +58,7 @@ var volumeList1 = [
 
 const nv = new Niivue({ isResizeCanvas: false });
 nv.attachTo("gl");
-await nv.loadVolumes(volumeList1);
+nv.loadVolumes(volumeList1);
 console.log("hi" + nv.colormaps());
 nv.setOpacity(0, 0.5);
 nv.setColorMap(nv.volumes[0].id, "red");
