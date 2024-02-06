@@ -3,13 +3,12 @@ const appContainer = document.querySelector("#app");
 appContainer.style.maxWidth = "1000px"; // Set maximum width to 1000px
 appContainer.style.margin = "auto"; // Center the container on the page
 
-
 import hljs from "highlight.js";
 import "highlight.js/styles/atom-one-dark.css";
 
 function createCodeContainer(code) {
   const container = document.createElement("div");
-  container.style.cssText = "height: 150px; overflow: auto;"; // Set height and overflow
+  container.style.cssText = "height: 350px; overflow: auto;"; // Set height and overflow
   container.innerHTML = `<pre><code class="javascript">${code}</code></pre>`;
   hljs.highlightElement(container.querySelector("code"));
   return container;
@@ -24,7 +23,6 @@ function createStyledDiv(newDiv) {
   return styledDiv;
 }
 
-
 function createRow() {
   const row = document.createElement("div");
   row.style.border = "4px solid rgba(255, 165, 0, 0.5)";
@@ -33,16 +31,79 @@ function createRow() {
   return row;
 }
 
-const code1 = `i = 3;\nconsole.log(i);\ni = 3;\nconsole.log(i);\ni = 3;\nconsole.log(i);\ni = 3;\nconsole.log(i);\ni = 3;\nconsole.log(i);\ni = 3;\nconsole.log(i);\ni = 3;\nconsole.log(i);\n`;
-const code2 = `i = 4;\nconsole.log(i);`;
+//////////////////////////
 
 const row1 = createRow();
-row1.appendChild(createStyledDiv(createCodeContainer(code1)));
-row1.appendChild(createStyledDiv(createCodeContainer(code1)));
 
-const row2 = createRow();
-row2.appendChild(createStyledDiv(createCodeContainer(code2)));
-row2.appendChild(createStyledDiv(createCodeContainer(code2)));
+const code1a = `Hi There`;
+row1.appendChild(createStyledDiv(createCodeContainer(code1a)));
+
+const code1b = `Hello World`;
+row1.appendChild(createStyledDiv(createCodeContainer(code1b)));
 
 appContainer.appendChild(row1);
+
+//////////////////////////
+
+const row2 = createRow();
+
+const code2a = `
+
+const nv = new Niivue({ isResizeCanvas: false });
+nv.attachTo("gl");
+
+const volumeList1 = [
+  {
+    url: "mni152.nii.gz",
+    colormap: "gray",
+    visible: true,
+    opacity: 1,
+  },
+];
+
+nv.loadVolumes(volumeList1)
+  .then(() => {
+    console.log("Volume loaded");
+    console.log("hi" + nv.colormaps());
+    nv.setOpacity(0, 0.5);
+    nv.setColorMap(nv.volumes[0].id, "red");
+  })
+  .catch((error) => {
+    console.error("Error loading volumes", error);
+  });
+
+`;
+row2.appendChild(createStyledDiv(createCodeContainer(code2a)));
+
+import { Niivue } from "@niivue/niivue";
+
+const canvasContainer = document.createElement("div");
+row2.appendChild(createStyledDiv(canvasContainer));
+
+canvasContainer.innerHTML = '<canvas id="gl"></canvas>';
 appContainer.appendChild(row2);
+
+const nv = new Niivue({ isResizeCanvas: false });
+nv.attachTo("gl");
+
+const volumeList1 = [
+  {
+    url: "mni152.nii.gz",
+    colormap: "gray",
+    visible: true,
+    opacity: 1,
+  },
+];
+
+nv.loadVolumes(volumeList1)
+  .then(() => {
+    console.log("Volume loaded");
+    console.log("hi" + nv.colormaps());
+    nv.setOpacity(0, 0.5);
+    nv.setColorMap(nv.volumes[0].id, "red");
+  })
+  .catch((error) => {
+    console.error("Error loading volumes", error);
+  });
+
+//////////////////////////

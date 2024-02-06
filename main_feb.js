@@ -40,7 +40,6 @@ const createContainer = (width, content) => {
 const codeContainer = createContainer("50%", `<pre><code class="javascript">${code}</code></pre>`);
 hljs.highlightElement(codeContainer.querySelector("code"));
 
-const canvasContainer = createContainer("50%", '<canvas id="gl"></canvas>');
 
 const mainContainer = document.createElement("div");
 mainContainer.style.display = "flex";
@@ -49,6 +48,7 @@ mainContainer.appendChild(canvasContainer);
 
 document.querySelector("#app").appendChild(mainContainer);
 
+const canvasContainer = createContainer("50%", '<canvas id="gl"></canvas>');
 const nv = new Niivue({ isResizeCanvas: true });
 nv.attachTo("gl");
 
