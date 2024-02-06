@@ -1,6 +1,6 @@
 const appContainer = document.querySelector("#app");
 
-appContainer.style.maxWidth = "1000px"; // Set maximum width to 1000px
+appContainer.style.maxWidth = "1200px"; // Set maximum width to 1000px
 appContainer.style.margin = "auto"; // Center the container on the page
 
 import hljs from "highlight.js";
@@ -31,7 +31,9 @@ function createRow() {
   return row;
 }
 
-//////////////////////////
+////////////////////////// ROW1
+
+
 
 const row1 = createRow();
 
@@ -44,7 +46,7 @@ row1.appendChild(createStyledDiv(createCodeContainer(code1b)));
 
 appContainer.appendChild(row1);
 
-//////////////////////////
+////////////////////////// ROW2
 
 const row2 = createRow();
 
@@ -95,31 +97,33 @@ nv.loadVolumes(volumeList1).then(() => {
   nv.setColorMap(nv.volumes[0].id, "red");
 });
 
-//////////////////////////
-
-//////////////////////////
+////////////////////////// ROW3
 
 const row3 = createRow();
 
 const code3a = `
 import { Niivue } from "@niivue/niivue";
 
-const nv = new Niivue({ isResizeCanvas: true });
-nv.attachTo("gl");
-
-const volumeList1 = [
+const nv2 = new Niivue({ isResizeCanvas: true });
+nv2.attachTo("gl3");
+nv2.setSliceType(nv2.sliceTypeRender);
+nv2.opts.isColorbar = true;
+nv2.opts.show3Dcrosshair = true;
+nv2.opts.backColor = [1, 1, 1, 1];
+nv2.loadMeshes([
   {
-    url: "mni152.nii.gz",
-    colormap: "gray",
-    visible: true,
-    opacity: 1,
+    url: "Human.colin.Cerebral.R.VERY_INFLATED.71723.surf.gii",
+    rgba255: [255, 255, 255, 255],
+    layers: [
+      {
+        url: "Human.colin.R.FUNCTIONAL.71723.func.gii",
+        colormap: "rocket",
+        opacity: 0.7,
+      },
+    ],
   },
-];
-
-nv.loadVolumes(volumeList1).then(() => {
-  nv.setOpacity(0, 0.5);
-  nv.setColorMap(nv.volumes[0].id, "red");
-});
+]);
+nv2.setClipPlane([-0.1, 270, 0]);
 `;
 row3.appendChild(createStyledDiv(createCodeContainer(code3a)));
 
@@ -132,19 +136,23 @@ appContainer.appendChild(row3);
 
 const nv2 = new Niivue({ isResizeCanvas: true });
 nv2.attachTo("gl3");
-
-const volumeList2 = [
+nv2.setSliceType(nv2.sliceTypeRender);
+nv2.opts.isColorbar = true;
+nv2.opts.show3Dcrosshair = true;
+nv2.opts.backColor = [1, 1, 1, 1];
+nv2.loadMeshes([
   {
-    url: "mni152.nii.gz",
-    colormap: "gray",
-    visible: true,
-    opacity: 1,
+    url: "Human.colin.Cerebral.R.VERY_INFLATED.71723.surf.gii",
+    rgba255: [255, 255, 255, 255],
+    layers: [
+      {
+        url: "Human.colin.R.FUNCTIONAL.71723.func.gii",
+        colormap: "rocket",
+        opacity: 0.7,
+      },
+    ],
   },
-];
+]);
+nv2.setClipPlane([-0.1, 270, 0]);
 
-nv2.loadVolumes(volumeList2).then(() => {
-  nv2.setOpacity(0, 1);
-  nv2.setColorMap(nv2.volumes[0].id, "blue");
-});
 
-//////////////////////////
