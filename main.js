@@ -1,31 +1,36 @@
-// Your existing app container in the HTML
-const appContainer = document.querySelector('#app');
+const appContainer = document.querySelector("#app");
 
-// Apply styles to the app container for the grid layout
-appContainer.style.display = 'grid';
-appContainer.style.gridTemplateColumns = '1fr 1fr'; // two columns
-appContainer.style.gridGap = '10px'; // space between the divs
+import hljs from "highlight.js";
+import "highlight.js/styles/atom-one-dark.css";
 
-// Function to create a div with the specified content
-const createDiv = (content) => {
-  const newDiv = document.createElement('div');
-  newDiv.textContent = content;
-  newDiv.style.border = '1px solid orange'; // border color as per the image
-  newDiv.style.height = '150px'; // assuming a fixed height for each div
-  newDiv.style.display = 'flex';
-  newDiv.style.alignItems = 'center'; // center content vertically
-  newDiv.style.justifyContent = 'center'; // center content horizontally
-  return newDiv;
+function createCodeContainer(code) {
+  const container = document.createElement("div");
+  container.innerHTML = `<pre><code class="javascript">${code}</code></pre>`;
+  const codeElement = container.querySelector("code");
+  hljs.highlightElement(codeElement);
+  return container;
+}
+
+
+const code = `
+i = 3;
+console.log(i);
+`;
+
+const codeContainer = createCodeContainer(code);
+
+const createAndAppendDiv = (newDiv) => {
+  const newDivOrange = document.createElement("div");
+  newDivOrange.style.border = "1px solid orange"; // border color
+  newDivOrange.style.height = "150px"; // fixed height for each div
+  newDivOrange.style.display = "flex";
+  newDivOrange.style.width = "50%";
+  newDivOrange.style.alignItems = "center"; // center content vertically
+  newDivOrange.style.justifyContent = "center"; // center content horizontally
+  newDivOrange.appendChild(newDiv); // append the div to the specified container
+  appContainer.appendChild(newDivOrange);
 };
 
-// Manually add each div element
-const div1 = createDiv('div1');
-const div2 = createDiv('div2');
-const div3 = createDiv('div3');
-const div4 = createDiv('div4');
+createAndAppendDiv(codeContainer);
 
-// Append the divs to the app container
-appContainer.appendChild(div1);
-appContainer.appendChild(div2);
-appContainer.appendChild(div3);
-appContainer.appendChild(div4);
+createAndAppendDiv(codeContainer.cloneNode(true));
