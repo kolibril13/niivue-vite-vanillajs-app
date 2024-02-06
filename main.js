@@ -1,5 +1,9 @@
 const appContainer = document.querySelector("#app");
 
+appContainer.style.maxWidth = "1000px"; // Set maximum width to 1000px
+appContainer.style.margin = "auto"; // Center the container on the page
+
+
 import hljs from "highlight.js";
 import "highlight.js/styles/atom-one-dark.css";
 
