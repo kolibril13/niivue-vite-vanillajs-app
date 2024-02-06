@@ -3,9 +3,11 @@ import "highlight.js/styles/atom-one-dark.css";
 import { Niivue } from "@niivue/niivue";
 
 const code = `
-import { Niivue } from "@niivue/niivue";
+const canvasContainer = createContainer("50%", '<canvas id="gl"></canvas>');
+const nv = new Niivue({ isResizeCanvas: true });
+nv.attachTo("gl");
 
-var volumeList1 = [
+const volumeList1 = [
   {
     url: "mni152.nii.gz",
     colormap: "gray",
@@ -14,19 +16,10 @@ var volumeList1 = [
   },
 ];
 
-const nv = new Niivue({ isResizeCanvas: false });
-nv.attachTo("gl");
-
-nv.loadVolumes(volumeList1)
-  .then(() => {
-    console.log("Volume loaded");
-    console.log("hi" + nv.colormaps());
-    nv.setOpacity(0, 0.5);
-    nv.setColorMap(nv.volumes[0].id, "red");
-  })
-  .catch((error) => {
-    console.error("Error loading volumes", error);
-  });
+nv.loadVolumes(volumeList1).then(() => {
+  nv.setOpacity(0, 0.5);
+  nv.setColorMap(nv.volumes[0].id, "red");
+});
 `;
 
 const createContainer = (width, content) => {
@@ -37,9 +30,11 @@ const createContainer = (width, content) => {
   return container;
 };
 
-const codeContainer = createContainer("50%", `<pre><code class="javascript">${code}</code></pre>`);
+const codeContainer = createContainer(
+  "50%",
+  `<pre><code class="javascript">${code}</code></pre>`
+);
 hljs.highlightElement(codeContainer.querySelector("code"));
-
 
 const mainContainer = document.createElement("div");
 mainContainer.style.display = "flex";
@@ -61,13 +56,7 @@ const volumeList1 = [
   },
 ];
 
-nv.loadVolumes(volumeList1)
-  .then(() => {
-    console.log("Volume loaded");
-    console.log("hi" + nv.colormaps());
-    nv.setOpacity(0, 0.5);
-    nv.setColorMap(nv.volumes[0].id, "red");
-  })
-  .catch((error) => {
-    console.error("Error loading volumes", error);
-  });
+nv.loadVolumes(volumeList1).then(() => {
+  nv.setOpacity(0, 0.5);
+  nv.setColorMap(nv.volumes[0].id, "red");
+});

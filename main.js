@@ -48,8 +48,9 @@ appContainer.appendChild(row1);
 const row2 = createRow();
 
 const code2a = `
+import { Niivue } from "@niivue/niivue";
 
-const nv = new Niivue({ isResizeCanvas: false });
+const nv = new Niivue({ isResizeCanvas: true });
 nv.attachTo("gl");
 
 const volumeList1 = [
@@ -61,17 +62,10 @@ const volumeList1 = [
   },
 ];
 
-nv.loadVolumes(volumeList1)
-  .then(() => {
-    console.log("Volume loaded");
-    console.log("hi" + nv.colormaps());
-    nv.setOpacity(0, 0.5);
-    nv.setColorMap(nv.volumes[0].id, "red");
-  })
-  .catch((error) => {
-    console.error("Error loading volumes", error);
-  });
-
+nv.loadVolumes(volumeList1).then(() => {
+  nv.setOpacity(0, 0.5);
+  nv.setColorMap(nv.volumes[0].id, "red");
+});
 `;
 row2.appendChild(createStyledDiv(createCodeContainer(code2a)));
 
@@ -83,7 +77,7 @@ row2.appendChild(createStyledDiv(canvasContainer));
 canvasContainer.innerHTML = '<canvas id="gl"></canvas>';
 appContainer.appendChild(row2);
 
-const nv = new Niivue({ isResizeCanvas: false });
+const nv = new Niivue({ isResizeCanvas: true });
 nv.attachTo("gl");
 
 const volumeList1 = [
@@ -95,15 +89,9 @@ const volumeList1 = [
   },
 ];
 
-nv.loadVolumes(volumeList1)
-  .then(() => {
-    console.log("Volume loaded");
-    console.log("hi" + nv.colormaps());
-    nv.setOpacity(0, 0.5);
-    nv.setColorMap(nv.volumes[0].id, "red");
-  })
-  .catch((error) => {
-    console.error("Error loading volumes", error);
-  });
+nv.loadVolumes(volumeList1).then(() => {
+  nv.setOpacity(0, 0.5);
+  nv.setColorMap(nv.volumes[0].id, "red");
+});
 
 //////////////////////////
