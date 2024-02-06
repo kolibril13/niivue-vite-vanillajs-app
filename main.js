@@ -8,7 +8,7 @@ import "highlight.js/styles/atom-one-dark.css";
 
 function createCodeContainer(code) {
   const container = document.createElement("div");
-  container.style.cssText = "height: 350px; overflow: auto;"; // Set height and overflow
+  container.style.cssText = "overflow: auto;"; // Set height and overflow
   container.innerHTML = `<pre><code class="javascript">${code}</code></pre>`;
   hljs.highlightElement(container.querySelector("code"));
   return container;
@@ -35,11 +35,12 @@ function createRow() {
 
 const row1 = createRow();
 
-const code1a = `Hi There`;
+const code1a = `Code`;
 row1.appendChild(createStyledDiv(createCodeContainer(code1a)));
 
-const code1b = `Hello World`;
+const code1b = `Corresponding Output`;
 row1.appendChild(createStyledDiv(createCodeContainer(code1b)));
+
 
 appContainer.appendChild(row1);
 
@@ -69,13 +70,13 @@ nv.loadVolumes(volumeList1).then(() => {
 `;
 row2.appendChild(createStyledDiv(createCodeContainer(code2a)));
 
-import { Niivue } from "@niivue/niivue";
 
 const canvasContainer = document.createElement("div");
 row2.appendChild(createStyledDiv(canvasContainer));
 
 canvasContainer.innerHTML = '<canvas id="gl"></canvas>';
 appContainer.appendChild(row2);
+import { Niivue } from "@niivue/niivue";
 
 const nv = new Niivue({ isResizeCanvas: true });
 nv.attachTo("gl");
