@@ -6,20 +6,23 @@ i = 3;
 console.log(i);
 `;
 
-const createContainer = (content, width) => {
-  const container = document.createElement("div");
-  container.style.width = width;
-  container.innerHTML = content;
-  return container;
-};
+function createCodeContainer(code, width) {
+    const container = document.createElement('div');
+    container.style.width = width;
+    container.innerHTML = `<pre><code class="javascript">${code}</code></pre>`;
+    return container;
+}
 
-const codeContainer = createContainer(
-  `<pre><code class="javascript">${code}</code></pre>`,
-  `50%`
-);
-hljs.highlightElement(codeContainer.querySelector("code"));
+function highlightCode(container) {
+    const codeElement = container.querySelector('code');
+    hljs.highlightElement(codeElement);
+}
 
-const mainContainer = document.createElement("div");
-mainContainer.appendChild(codeContainer);
+function appendToApp(container) {
+    const appElement = document.querySelector('#app');
+    appElement.appendChild(container);
+}
 
-document.querySelector("#app").appendChild(mainContainer);
+const codeContainer = createCodeContainer(code, '50%');
+highlightCode(codeContainer);
+appendToApp(codeContainer);
