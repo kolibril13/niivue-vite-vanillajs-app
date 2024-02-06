@@ -9,6 +9,7 @@ import "highlight.js/styles/atom-one-dark.css";
 
 function createCodeContainer(code) {
   const container = document.createElement("div");
+  container.style.cssText = "height: 150px; overflow: auto;"; // Set height and overflow
   container.innerHTML = `<pre><code class="javascript">${code}</code></pre>`;
   hljs.highlightElement(container.querySelector("code"));
   return container;
@@ -17,11 +18,12 @@ function createCodeContainer(code) {
 function createStyledDiv(newDiv) {
   const styledDiv = document.createElement("div");
   styledDiv.style.cssText =
-    "border: 4px solid rgba(255, 165, 0, 0.05); height: 150px; display: flex; width: 50%; align-items: center; justify-content: center;";
+    "border: 4px solid rgba(255, 165, 0, 0.05); display: flex; width: 50%; align-items: center; justify-content: center;";
   styledDiv.style.margin = "10px";
   styledDiv.appendChild(newDiv);
   return styledDiv;
 }
+
 
 function createRow() {
   const row = document.createElement("div");
@@ -31,7 +33,7 @@ function createRow() {
   return row;
 }
 
-const code1 = `i = 3;\nconsole.log(i);`;
+const code1 = `i = 3;\nconsole.log(i);\ni = 3;\nconsole.log(i);\ni = 3;\nconsole.log(i);\ni = 3;\nconsole.log(i);\ni = 3;\nconsole.log(i);\ni = 3;\nconsole.log(i);\ni = 3;\nconsole.log(i);\n`;
 const code2 = `i = 4;\nconsole.log(i);`;
 
 const row1 = createRow();
