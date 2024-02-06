@@ -31,6 +31,7 @@ const createAndAppendDiv = (newDiv) => {
   appContainer.appendChild(newDivOrange);
 };
 
-createAndAppendDiv(codeContainer);
-
-createAndAppendDiv(codeContainer.cloneNode(true));
+createAndAppendDiv(codeContainer); // div1
+createAndAppendDiv(codeContainer.cloneNode(true)); // div2
+createAndAppendDiv(codeContainer.cloneNode(true)); // div3
+createAndAppendDiv(codeContainer.cloneNode(true)); // div4
