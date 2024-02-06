@@ -6,32 +6,37 @@ import "highlight.js/styles/atom-one-dark.css";
 function createCodeContainer(code) {
   const container = document.createElement("div");
   container.innerHTML = `<pre><code class="javascript">${code}</code></pre>`;
-  const codeElement = container.querySelector("code");
-  hljs.highlightElement(codeElement);
+  hljs.highlightElement(container.querySelector("code"));
   return container;
 }
 
+function createStyledDiv(newDiv) {
+  const styledDiv = document.createElement("div");
+  styledDiv.style.cssText =
+    "border: 4px solid rgba(255, 165, 0, 0.05); height: 150px; display: flex; width: 50%; align-items: center; justify-content: center;";
+  styledDiv.style.margin = "10px";
+  styledDiv.appendChild(newDiv);
+  return styledDiv;
+}
 
-const code = `
-i = 3;
-console.log(i);
-`;
+function createRow() {
+  const row = document.createElement("div");
+  row.style.border = "4px solid rgba(255, 165, 0, 0.5)";
+  row.style.margin = "10px";
+  row.style.display = "flex";
+  return row;
+}
 
-const codeContainer = createCodeContainer(code);
+const code1 = `i = 3;\nconsole.log(i);`;
+const code2 = `i = 4;\nconsole.log(i);`;
 
-const createAndAppendDiv = (newDiv) => {
-  const newDivOrange = document.createElement("div");
-  newDivOrange.style.border = "1px solid orange"; // border color
-  newDivOrange.style.height = "150px"; // fixed height for each div
-  newDivOrange.style.display = "flex";
-  newDivOrange.style.width = "50%";
-  newDivOrange.style.alignItems = "center"; // center content vertically
-  newDivOrange.style.justifyContent = "center"; // center content horizontally
-  newDivOrange.appendChild(newDiv); // append the div to the specified container
-  appContainer.appendChild(newDivOrange);
-};
+const row1 = createRow();
+row1.appendChild(createStyledDiv(createCodeContainer(code1)));
+row1.appendChild(createStyledDiv(createCodeContainer(code1)));
 
-createAndAppendDiv(codeContainer); // div1
-createAndAppendDiv(codeContainer.cloneNode(true)); // div2
-createAndAppendDiv(codeContainer.cloneNode(true)); // div3
-createAndAppendDiv(codeContainer.cloneNode(true)); // div4
+const row2 = createRow();
+row2.appendChild(createStyledDiv(createCodeContainer(code2)));
+row2.appendChild(createStyledDiv(createCodeContainer(code2)));
+
+appContainer.appendChild(row1);
+appContainer.appendChild(row2);
