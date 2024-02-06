@@ -96,3 +96,55 @@ nv.loadVolumes(volumeList1).then(() => {
 });
 
 //////////////////////////
+
+//////////////////////////
+
+const row3 = createRow();
+
+const code3a = `
+import { Niivue } from "@niivue/niivue";
+
+const nv = new Niivue({ isResizeCanvas: true });
+nv.attachTo("gl");
+
+const volumeList1 = [
+  {
+    url: "mni152.nii.gz",
+    colormap: "gray",
+    visible: true,
+    opacity: 1,
+  },
+];
+
+nv.loadVolumes(volumeList1).then(() => {
+  nv.setOpacity(0, 0.5);
+  nv.setColorMap(nv.volumes[0].id, "red");
+});
+`;
+row3.appendChild(createStyledDiv(createCodeContainer(code3a)));
+
+
+const canvasContainer3 = document.createElement("div");
+row3.appendChild(createStyledDiv(canvasContainer3));
+
+canvasContainer3.innerHTML = '<canvas id="gl3"></canvas>';
+appContainer.appendChild(row3);
+
+const nv2 = new Niivue({ isResizeCanvas: true });
+nv2.attachTo("gl3");
+
+const volumeList2 = [
+  {
+    url: "mni152.nii.gz",
+    colormap: "gray",
+    visible: true,
+    opacity: 1,
+  },
+];
+
+nv2.loadVolumes(volumeList2).then(() => {
+  nv2.setOpacity(0, 1);
+  nv2.setColorMap(nv2.volumes[0].id, "blue");
+});
+
+//////////////////////////
