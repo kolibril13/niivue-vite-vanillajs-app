@@ -105,7 +105,7 @@ const code3a = `
 import { Niivue } from "@niivue/niivue";
 
 const nv2 = new Niivue({ isResizeCanvas: true });
-nv2.attachTo("gl3");
+nv2.attachTo("gl2");
 nv2.setSliceType(nv2.sliceTypeRender);
 nv2.opts.isColorbar = true;
 nv2.opts.show3Dcrosshair = true;
