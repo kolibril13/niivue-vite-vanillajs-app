@@ -131,11 +131,11 @@ row3.appendChild(createStyledDiv(createCodeContainer(code3a)));
 const canvasContainer3 = document.createElement("div");
 row3.appendChild(createStyledDiv(canvasContainer3));
 
-canvasContainer3.innerHTML = '<canvas id="gl3"></canvas>';
+canvasContainer3.innerHTML = '<canvas id="gl2"></canvas>';
 appContainer.appendChild(row3);
 
 const nv2 = new Niivue({ isResizeCanvas: true });
-nv2.attachTo("gl3");
+nv2.attachTo("gl2");
 nv2.setSliceType(nv2.sliceTypeRender);
 nv2.opts.isColorbar = true;
 nv2.opts.show3Dcrosshair = true;
